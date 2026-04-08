@@ -13,6 +13,28 @@ public class Pelea {
         }
     }
 
+    public static Personaje [] ordenarTurnos(Personaje [] peleadores){
+
+  for (int i = 0; i < peleadores.length * peleadores.length; i++) {
+
+                for (int j = 0; j < peleadores.length - 1; j++) {
+                    if (peleadores[j] != null && peleadores[j + 1] != null) {
+                        if (peleadores[j].getVelocidad() < peleadores[j + 1].getVelocidad()) {
+
+                            Personaje aux;
+                            aux = peleadores[j + 1];
+                            peleadores[j + 1] = peleadores[j];
+                            peleadores[j] = aux;
+
+                        }
+                    }
+
+                }
+
+            }
+return peleadores;
+    }
+
     public static boolean hayAlguienVivo(Personaje[] peleadores) {
     for (int i=0;i<peleadores.length;i++) {
         if (peleadores[i] != null && peleadores[i].getEstado() != Estado.DEAD && peleadores[i].getRol()==Rol.PJ) {
@@ -36,27 +58,11 @@ public class Pelea {
         }
 
         peleadores[4] = boss;
-
+peleadores=ordenarTurnos(peleadores);
         boolean pelea = true;
         while (pelea) {
 
-            for (int i = 0; i < peleadores.length * peleadores.length; i++) {
-
-                for (int j = 0; j < peleadores.length - 1; j++) {
-                    if (peleadores[j] != null && peleadores[j + 1] != null) {
-                        if (peleadores[j].getVelocidad() < peleadores[j + 1].getVelocidad()) {
-
-                            Personaje aux;
-                            aux = peleadores[j + 1];
-                            peleadores[j + 1] = peleadores[j];
-                            peleadores[j] = aux;
-
-                        }
-                    }
-
-                }
-
-            }
+          
 
             for (Personaje p : peleadores) {
 
@@ -225,6 +231,7 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
                                 System.out.println("Opción no válida.");
                                 break;
                         }
+                        peleadores=ordenarTurnos(peleadores);
                     }
                      if (boss.getEstado()==Estado.DEAD) {
                 System.out.println("Felicidades! Has ganado el juego!");
@@ -273,7 +280,7 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
             }
 
                 }
-
+peleadores=ordenarTurnos(peleadores);
             }
 
             if (!hayAlguienVivo(peleadores)) {
