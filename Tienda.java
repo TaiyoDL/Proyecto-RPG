@@ -31,7 +31,7 @@ System.out.println("2. [Vender]  - Ofrecer algo");
 System.out.println("3. [Cartera]   - Ver sueldo actual");
 System.out.println("4. [Salir]   - Despedirse");
 System.out.println("-------------------------------");
-System.out.print("¿Qué deseas hacer?: ");
+System.out.println("¿Qué deseas hacer?: ");
 
 int opcion=n.nextInt();
 n.nextLine();
