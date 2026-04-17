@@ -7,6 +7,8 @@
  *
  * @author mario
  */
+
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -253,8 +255,9 @@ int[][] array=(new int[][] {
 
 Convertidor.convertiddor(array, m1);
 Tienda shop = new Tienda("Provisional");
-
+Picnic cura = new Picnic();
 m1.anadirHueco(shop,2,15);
+m1.anadirHueco(cura, 2, 14);
 
 shop.anadirObjeto(zumo);
 shop.anadirObjeto(pocion);

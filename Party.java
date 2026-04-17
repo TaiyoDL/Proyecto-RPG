@@ -9,6 +9,16 @@ public class Party {
     }
 
 
+    public static void curarEquipo(){
+
+for(Personaje p : team) {
+if(p!=null){
+    p.setVida(p.getVidaTotal());
+}
+}
+System.out.println("Equipo curado con éxito!");
+    }
+
     
     
     
