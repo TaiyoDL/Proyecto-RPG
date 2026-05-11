@@ -187,15 +187,15 @@ peleadores=ordenarTurnos(peleadores);
                             case 5:
 
                             System.out.println("Con quien quieres que "+p.getNombre()+" realice un ataque combinado?");
-                            for(int i=0;i<peleadores.length-1;i++) {
-if(peleadores[i]!=null) {
+                            for(int i=0;i<peleadores.length;i++) {
+if(peleadores[i]!=null || !peleadores[i].getRol().equals(Rol.BOSS)) {
 System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
 }
                             }
                             int comb=n.nextInt();
                             n.nextLine();
                             comb--;
-                            if(comb<0 || comb>3 || peleadores[comb]==null) {System.out.println("Opción no válida");}
+                            if(comb<0 || comb>4 || peleadores[comb]==null || peleadores[comb].getRol().equals(Rol.BOSS)) {System.out.println("Opción no válida");}
 
                             else {
 
