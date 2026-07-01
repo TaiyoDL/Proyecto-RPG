@@ -10,6 +10,8 @@ public Ataque_Estado(String nombre, String descripcion, int usos, double multipl
         this.statElegido = statElegido;
     }
 
+   
+
         
 public Ataque_Estado() {
         super();
@@ -22,6 +24,17 @@ public Ataque_Estado(double multiplicador, Stat statElegido) {
         this.multiplicador = multiplicador;
         this.statElegido = statElegido;
     }
+
+     @Override
+public Ataque clonarAtaque() {
+    return new Ataque_Estado(
+        this.getNombre(), 
+        this.getDescripcion(), 
+        this.getUsos(), 
+        this.multiplicador, 
+        this.statElegido
+    );
+}
 
 
 @Override

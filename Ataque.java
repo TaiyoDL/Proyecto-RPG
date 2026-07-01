@@ -40,4 +40,5 @@ public String toString() {
 
 return true;
     }
-}
+
+public abstract Ataque clonarAtaque();}

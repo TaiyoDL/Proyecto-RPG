@@ -15,6 +15,16 @@ public class Ataque_CurativoPorcentual extends Ataque {
         this.curacion_Porcentaje = curacion_Porcentaje;
     }
 
+    @Override
+public Ataque clonarAtaque() {
+    return new Ataque_CurativoPorcentual(
+        this.getNombre(), 
+        this.getDescripcion(), 
+        this.getUsos(), 
+        this.curacion_Porcentaje
+    );
+}
+
      @Override
     public boolean usarAtaque(Personaje usuario,Personaje objetivo) {
 

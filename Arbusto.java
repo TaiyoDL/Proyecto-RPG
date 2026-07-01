@@ -19,7 +19,7 @@ Random m = new Random();
     public boolean accederEvento(Mapa ma){
 if(m.nextInt(1,11)==1) {
 
-Pelea.batalla(ma.getEnemigos().get(m.nextInt(0,ma.getEnemigos().size())),m.nextInt(10,71),m.nextInt(60,351));
+Pelea.batalla(ma.getEnemigos().get(m.nextInt(0,ma.getEnemigos().size())).clone(),m.nextInt(10,71),m.nextInt(60,351));
 
 }
 

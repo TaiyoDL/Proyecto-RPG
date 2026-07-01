@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Personaje {
+public class Personaje implements Cloneable {
     private String id;
     private String nombre;
     private int vida;
@@ -548,6 +548,43 @@ combos.add(c);
      else{System.out.println("Combinación no existente");}
      return false;
      }
+
+     @Override
+public Personaje clone() {
+    try {
+        // 1. Clona automáticamente id, nombre, vida, ataque, lvl, estado, rol, elegido, etc.
+        Personaje clon = (Personaje) super.clone();
+        
+        // 2. Clonamos manualmente el array de ataques de forma profunda desde aquí
+        clon.ataques = new Ataque[4];
+        for (int i = 0; i < this.ataques.length; i++) {
+            if (this.ataques[i] != null) {
+                Ataque at = this.ataques[i];
+                
+                // Comprobamos qué tipo de ataque es exactamente para crear la instancia correcta
+                if (at instanceof Ataque_pegar) {
+                    clon.ataques[i] = new Ataque_pegar(at.getNombre(), at.getDescripcion(), at.getUsos(), ((Ataque_pegar) at).getPotencia());
+                } 
+                else if (at instanceof Ataque_Curativo) {
+                    clon.ataques[i] = new Ataque_Curativo(at.getNombre(), at.getDescripcion(), at.getUsos(), ((Ataque_Curativo) at).getVida_curada());
+                } 
+                else if (at instanceof Ataque_CurativoPorcentual) {
+                    // Nota: Si curacion_Porcentaje es private y no tienes getter, puedes castearlo directamente: ((Ataque_CurativoPorcentual) at).curacion_Porcentaje
+                    clon.ataques[i] = new Ataque_CurativoPorcentual(at.getNombre(), at.getDescripcion(), at.getUsos(), ((Ataque_CurativoPorcentual) at).curacion_Porcentaje);
+                } 
+                else if (at instanceof Ataque_Estado) {
+                    // Nota: Accedemos directamente a sus variables mapeadas mediante el casteo
+                    clon.ataques[i] = new Ataque_Estado(at.getNombre(), at.getDescripcion(), at.getUsos(), ((Ataque_Estado) at).multiplicador, ((Ataque_Estado) at).statElegido);
+                }
+            }
+        }
+        
+        return clon;
+        
+    } catch (CloneNotSupportedException e) {
+        throw new AssertionError(); // No fallará ya que Personaje implementa Cloneable
+    }
+}
 
 
 }

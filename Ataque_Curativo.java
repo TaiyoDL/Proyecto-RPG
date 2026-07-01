@@ -1,5 +1,8 @@
 public class Ataque_Curativo extends Ataque {
-
+@Override
+public Ataque clonarAtaque() {
+    return new Ataque_Curativo(this.getNombre(), this.getDescripcion(), this.getUsos(), this.getVida_curada());
+}
     private int vida_curada;
 
     public Ataque_Curativo(String nombre, String descripcion, int usos, int vida_curada) {

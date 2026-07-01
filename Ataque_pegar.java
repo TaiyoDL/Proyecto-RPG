@@ -4,7 +4,10 @@ private int potencia;
 
 
 
-
+@Override
+public Ataque clonarAtaque() {
+    return new Ataque_pegar(this.getNombre(), this.getDescripcion(), this.getUsos(), this.potencia);
+}
 
 
      public Ataque_pegar(String nombre, String descripcion, int usos, int potencia) {

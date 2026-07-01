@@ -1,6 +1,6 @@
 
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Pelea {
 
@@ -231,7 +231,7 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
                                 System.out.println("Opción no válida.");
                                 break;
                         }
-                        peleadores=ordenarTurnos(peleadores);
+                        
                     }
                      if (boss.getEstado()==Estado.DEAD) {
                 System.out.println("Felicidades! Has ganado el juego!");
@@ -239,6 +239,7 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
                 Personaje.setDinero(Personaje.getDinero()+dinero);
                 Nivel.RepartirExp(experiencia);
                 Nivel.SubirEquipo();
+                boss=null;
                 return true;
 
             }
@@ -275,17 +276,19 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
                 Personaje.setDinero(Personaje.getDinero()+dinero);
                 Nivel.RepartirExp(experiencia);
                 Nivel.SubirEquipo();
+                boss=null;
                 return true;
 
             }
 
                 }
-peleadores=ordenarTurnos(peleadores);
+
             }
 
             if (!hayAlguienVivo(peleadores)) {
 
                 System.out.println("Oh no! Has perdido!");
+                boss=null;
                 return false;
             }
 
@@ -297,11 +300,14 @@ peleadores=ordenarTurnos(peleadores);
                 Nivel.RepartirExp(experiencia);
                 Nivel.SubirEquipo();
                 Nivel.RestaurarStats();
+                boss=null;
                 return true;
+                
 
             }
         
         }
+        boss=null;
 return true;
     }
 }
