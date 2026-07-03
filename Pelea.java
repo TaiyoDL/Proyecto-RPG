@@ -115,10 +115,13 @@ peleadores=ordenarTurnos(peleadores);
 
                                     objetivo--;
 
+                                    if(p.getAtaques()[ataque]!=null && p!=null && peleadores[objetivo]!=null){
+
                                     if (p.getAtaques()[ataque].usarAtaque(p, peleadores[objetivo])) {
 
                                         turno = false;
                                     }
+                                }
 
                                 }
 
@@ -146,10 +149,13 @@ peleadores=ordenarTurnos(peleadores);
 
                                     objetivo--;
 
+                                    if(peleadores[objetivo]!=null && Personaje.getMochila().get(objeto)!=null && p!=null){
+
                                     if (Personaje.getMochila().get(objeto).usarObjeto(p, peleadores[objetivo])) {
 
                                         turno = false;
                                     }
+                                }
 
                                 }
 
@@ -166,7 +172,7 @@ peleadores=ordenarTurnos(peleadores);
                                 }
 
                                 objetivo--;
-                                peleadores[objetivo].verVida();
+                                if(peleadores[objetivo]!=null){peleadores[objetivo].verVida();}
 
                                 break;
                             case 4:
@@ -181,14 +187,14 @@ peleadores=ordenarTurnos(peleadores);
                                 }
 
                                 objetivo--;
-                                peleadores[objetivo].mostrarStats();
+                                if(peleadores[objetivo]!=null){peleadores[objetivo].mostrarStats();}
 
                                 break;
                             case 5:
 
                             System.out.println("Con quien quieres que "+p.getNombre()+" realice un ataque combinado?");
                             for(int i=0;i<peleadores.length;i++) {
-if(peleadores[i]!=null || !peleadores[i].getRol().equals(Rol.BOSS)) {
+if(peleadores[i]!=null && !peleadores[i].getRol().equals(Rol.BOSS)) {
 System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
 }
                             }
@@ -240,6 +246,7 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
                 Nivel.RepartirExp(experiencia);
                 Nivel.SubirEquipo();
                 boss=null;
+                n.close();
                 return true;
 
             }
@@ -277,6 +284,7 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
                 Nivel.RepartirExp(experiencia);
                 Nivel.SubirEquipo();
                 boss=null;
+                n.close();
                 return true;
 
             }
@@ -289,6 +297,7 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
 
                 System.out.println("Oh no! Has perdido!");
                 boss=null;
+                n.close();
                 return false;
             }
 
@@ -301,12 +310,14 @@ System.out.println((i+1)+"-"+peleadores[i].getNombre()+"\n");
                 Nivel.SubirEquipo();
                 Nivel.RestaurarStats();
                 boss=null;
+                n.close();
                 return true;
                 
 
             }
         
         }
+        n.close();
         boss=null;
 return true;
     }

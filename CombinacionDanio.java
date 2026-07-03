@@ -13,10 +13,16 @@ public class CombinacionDanio extends Combinacion {
 
 private int danio;
 
-    public CombinacionDanio(int danio, String nombre, String descripcion, String id1, String id2, int usos) {
-        super(nombre, descripcion, id1, id2, usos);
+    public CombinacionDanio(int danio, String nombre, String descripcion, String id1, String id2, int usos, int usostotales) {
+        super(nombre, descripcion, id1, id2, usos,usostotales);
         this.danio = danio;
     }
+
+    
+
+   
+
+
 
     public int getDanio() {
         return danio;

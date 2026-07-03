@@ -44,6 +44,38 @@ public class Personaje implements Cloneable {
         this.exp=0;
     }
 
+    public Personaje(String id, String nombre, int vida, int ataque, int defensa, int velocidad, 
+                 boolean elegido, Estado estado, Rol rol, int lvl, int Mexp, int xp) {
+    this.id = id;
+    this.nombre = nombre;
+    
+    // Asignación de estadísticas actuales y totales
+    this.vida = vida;
+    this.vidaTotal = vida;
+    
+    this.ataque = ataque;
+    this.ataqueTotal = ataque;
+    
+    this.defensa = defensa;
+    this.defensaTotal = defensa;
+    
+    this.velocidad = velocidad;
+    this.velocidadTotal = velocidad;
+    
+    this.elegido = elegido;
+    this.estado = estado;
+    this.rol = rol;
+    this.lvl = lvl;
+    this.Mexp = Mexp;
+    
+    // Mapeado correcto de la experiencia
+    this.exp = xp; 
+
+    
+    this.ataques = new Ataque[4];
+    this.numAtaques = 0; 
+}
+
     public boolean getElegido() {
         return elegido;
     }
@@ -107,7 +139,32 @@ public class Personaje implements Cloneable {
         this.rol=Rol.PJ;
 
     }
+
     
+    
+
+    public Personaje(String id, String nombre, int vida, int vidaTotal, int ataque, int ataqueTotal, int defensa,
+            int defensaTotal, int velocidad, int velocidadTotal,  boolean elegido,
+            Estado estado, Rol rol, int lvl, int mexp, int exp) {
+        this.id = id;
+        this.nombre = nombre;
+        this.vida = vida;
+        this.vidaTotal = vidaTotal;
+        this.ataque = ataque;
+        this.ataqueTotal = ataqueTotal;
+        this.defensa = defensa;
+        this.defensaTotal = defensaTotal;
+        this.velocidad = velocidad;
+        this.velocidadTotal = velocidadTotal;
+        this.ataques = new Ataque[4];
+        
+        this.elegido = elegido;
+        this.estado = estado;
+        this.rol = rol;
+        this.lvl = lvl;
+        Mexp = mexp;
+        this.exp = exp;
+    }
 
     public String getId() {
         return id;
@@ -549,40 +606,24 @@ combos.add(c);
      return false;
      }
 
-     @Override
+    @Override
 public Personaje clone() {
     try {
-        // 1. Clona automáticamente id, nombre, vida, ataque, lvl, estado, rol, elegido, etc.
+        // 1. Clona automáticamente los atributos primitivos, Strings y Enums
         Personaje clon = (Personaje) super.clone();
         
-        // 2. Clonamos manualmente el array de ataques de forma profunda desde aquí
+        // 2. Clonamos el array de ataques de forma limpia
         clon.ataques = new Ataque[4];
         for (int i = 0; i < this.ataques.length; i++) {
             if (this.ataques[i] != null) {
-                Ataque at = this.ataques[i];
-                
-                // Comprobamos qué tipo de ataque es exactamente para crear la instancia correcta
-                if (at instanceof Ataque_pegar) {
-                    clon.ataques[i] = new Ataque_pegar(at.getNombre(), at.getDescripcion(), at.getUsos(), ((Ataque_pegar) at).getPotencia());
-                } 
-                else if (at instanceof Ataque_Curativo) {
-                    clon.ataques[i] = new Ataque_Curativo(at.getNombre(), at.getDescripcion(), at.getUsos(), ((Ataque_Curativo) at).getVida_curada());
-                } 
-                else if (at instanceof Ataque_CurativoPorcentual) {
-                    // Nota: Si curacion_Porcentaje es private y no tienes getter, puedes castearlo directamente: ((Ataque_CurativoPorcentual) at).curacion_Porcentaje
-                    clon.ataques[i] = new Ataque_CurativoPorcentual(at.getNombre(), at.getDescripcion(), at.getUsos(), ((Ataque_CurativoPorcentual) at).curacion_Porcentaje);
-                } 
-                else if (at instanceof Ataque_Estado) {
-                    // Nota: Accedemos directamente a sus variables mapeadas mediante el casteo
-                    clon.ataques[i] = new Ataque_Estado(at.getNombre(), at.getDescripcion(), at.getUsos(), ((Ataque_Estado) at).multiplicador, ((Ataque_Estado) at).statElegido);
-                }
+                clon.ataques[i] = this.ataques[i].clonarAtaque();
             }
         }
         
         return clon;
         
     } catch (CloneNotSupportedException e) {
-        throw new AssertionError(); // No fallará ya que Personaje implementa Cloneable
+        throw new AssertionError();
     }
 }
 

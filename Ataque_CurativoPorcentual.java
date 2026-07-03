@@ -15,12 +15,21 @@ public class Ataque_CurativoPorcentual extends Ataque {
         this.curacion_Porcentaje = curacion_Porcentaje;
     }
 
+
+    
+    public Ataque_CurativoPorcentual(String nombre, String descripcion, int usos, int usosTotales,
+            double curacion_Porcentaje) {
+        super(nombre, descripcion, usos, usosTotales);
+        this.curacion_Porcentaje = curacion_Porcentaje;
+    }
+
     @Override
 public Ataque clonarAtaque() {
     return new Ataque_CurativoPorcentual(
         this.getNombre(), 
         this.getDescripcion(), 
         this.getUsos(), 
+        this.getUsosTotales(),
         this.curacion_Porcentaje
     );
 }

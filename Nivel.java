@@ -13,6 +13,7 @@ p.setMexp(p.getLvl()*p.getLvl()*40+50);
 p.setDefensaTotal(p.getDefensaTotal()+(int)(p.getDefensaTotal()*0.05));
 p.setAtaqueTotal(p.getAtaqueTotal()+(int)(p.getAtaqueTotal()*0.05));
 p.setVelocidadTotal(p.getVelocidadTotal()+(int)(p.getVelocidadTotal()*0.05));
+p.setVidaTotal(p.getVidaTotal()+(int)(p.getVidaTotal()*0.08));
 
     }
 

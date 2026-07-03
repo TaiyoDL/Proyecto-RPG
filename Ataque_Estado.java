@@ -31,10 +31,23 @@ public Ataque clonarAtaque() {
         this.getNombre(), 
         this.getDescripcion(), 
         this.getUsos(), 
+        this.getUsosTotales(),
         this.multiplicador, 
         this.statElegido
     );
 }
+
+
+
+
+public Ataque_Estado(String nombre, String descripcion, int usos, int usosTotales, double multiplicador,
+            Stat statElegido) {
+        super(nombre, descripcion, usos, usosTotales);
+        this.multiplicador = multiplicador;
+        this.statElegido = statElegido;
+    }
+
+
 
 
 @Override

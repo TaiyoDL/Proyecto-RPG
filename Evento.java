@@ -1,4 +1,4 @@
-public class Evento {
+abstract class Evento {
     
 private char icono;
 

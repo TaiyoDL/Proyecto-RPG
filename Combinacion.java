@@ -14,17 +14,34 @@ abstract class Combinacion {
     private String id1;
     private String id2;
     private int usos;
+    private int usosTotales;
     private String descripcion;
     private String nombre;
     
 
-    public Combinacion(String nombre,String descripcion,String id1, String id2, int usos) {
+    public Combinacion(String nombre,String descripcion,String id1, String id2, int usos,int usostotales) {
         this.id1 = id1;
         this.id2 = id2;
         this.usos=usos;
         this.descripcion=descripcion;
         this.nombre=nombre;
+        this.usosTotales=usostotales;
     }
+
+    
+    
+
+    public Combinacion(String id1, String id2, int usos, int usosTotales, String descripcion, String nombre) {
+        this.id1 = id1;
+        this.id2 = id2;
+        this.usos = usos;
+        this.usosTotales = usosTotales;
+        this.descripcion = descripcion;
+        this.nombre = nombre;
+    }
+
+
+
 
     public String getId1() {
         return id1;
@@ -80,6 +97,11 @@ else {return true;}
     @Override
     public String toString() {
         return "Combinacion{" + "Personaje1(ID)=" + id1 + ", Personaje2(ID)=" + id2 +  ", nombre=" + nombre +", descripcion=" + descripcion  +", usos=" + usos + '}'+"\n\n";
+    }
+
+
+    public int getUsosTotales() {
+        return usosTotales;
     }
    
     

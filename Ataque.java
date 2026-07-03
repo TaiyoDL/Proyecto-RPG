@@ -3,15 +3,27 @@ abstract class  Ataque {
 private String nombre;
 private String descripcion;
 private int usos;
+private int usosTotales;
 public Ataque(String nombre, String descripcion, int usos) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.usos = usos;
+    this.usosTotales=usos;
 }
 public Ataque() {
     this.nombre = "";
     this.descripcion = "";
     this.usos = 0;
+}
+
+
+
+
+public Ataque(String nombre, String descripcion, int usos, int usosTotales) {
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.usos = usos;
+    this.usosTotales = usosTotales;
 }
 public String getNombre() {
     return nombre;
@@ -41,4 +53,7 @@ public String toString() {
 return true;
     }
 
-public abstract Ataque clonarAtaque();}
+public abstract Ataque clonarAtaque();
+public int getUsosTotales() {
+    return usosTotales;
+}}

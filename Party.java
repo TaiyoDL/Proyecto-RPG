@@ -1,12 +1,9 @@
 public class Party {
 
-    public static  Personaje [] team;
+    public static  Personaje [] team= new Personaje[4];
     private static int tamanioActual;
 
-    public Party() {
-        this.tamanioActual=0;
-        team= new Personaje [4];
-    }
+   
 
 
     public static void curarEquipo(){
@@ -14,7 +11,21 @@ public class Party {
 for(Personaje p : team) {
 if(p!=null){
     p.setVida(p.getVidaTotal());
+    for(Ataque a : p.getAtaques()){
+
+        if(a!=null){
+
+            a.setUsos(a.getUsosTotales());
+        }
+    }
 }
+}
+
+for(Combinacion c : Personaje.getCombos()){
+
+    // POR AÑADIR USOS RESTANTES A COMBINACIONES Y ATAQUES Y STATS TOTALES EN LA BD
+
+    c.setUsos(c.getUsosTotales());
 }
 System.out.println("Equipo curado con éxito!");
     }
@@ -22,7 +33,7 @@ System.out.println("Equipo curado con éxito!");
     
     
     
-    public boolean anadirPj(Personaje p) {
+    public static boolean anadirPj(Personaje p) {
 
         if (p.getElegido()) {
 
@@ -36,7 +47,25 @@ System.out.println("Equipo curado con éxito!");
 
                 team[i] = p;
                 
-                this.tamanioActual++;
+                tamanioActual++;
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public static boolean anadirPjForzado(Personaje p) {
+
+        
+
+        for (int i = 0; i < 4; i++) {
+            if (team[i] == null) {
+                p.setElegido(true);
+
+                team[i] = p;
+                
+                tamanioActual++;
                 return true;
             }
 
@@ -44,9 +73,9 @@ System.out.println("Equipo curado con éxito!");
         return false;
     }
     
-    public boolean quitarPj(String idBuscado) {
+    public static boolean quitarPj(String idBuscado) {
     
-    if(this.tamanioActual==1) { System.out.println("Debe haber al menos 1 personaje en el equipo");return false;}
+    if(tamanioActual==1) { System.out.println("Debe haber al menos 1 personaje en el equipo");return false;}
     
     for(int i=0;i<4;i++) {
     if(team[i]!=null) {

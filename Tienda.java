@@ -156,7 +156,7 @@ System.out.println("\n Saldo actual: "+Personaje.getDinero()+"$ \n");
         System.out.println("Opción no válida");
 }
 
-
+n.close();
 }
 
 

@@ -2,12 +2,22 @@ public class CombinacionBendicion extends Combinacion{
 
 private int vida_curada;
 private double multiplicador;
-public CombinacionBendicion(String nombre, String descripcion, String id1, String id2, int usos, int vida_curada,
+public CombinacionBendicion(String nombre, String descripcion, String id1, String id2, int usos,int usostotales, int vida_curada,
         double multiplicador) {
-    super(nombre, descripcion, id1, id2, usos);
+    super(nombre, descripcion, id1, id2, usos,usostotales);
     this.vida_curada = vida_curada;
     this.multiplicador = multiplicador;
 }
+
+
+public CombinacionBendicion(String id1, String id2, int usos, int usosTotales, String descripcion, String nombre,
+        int vida_curada, double multiplicador) {
+    super(id1, id2, usos, usosTotales, descripcion, nombre);
+    this.vida_curada = vida_curada;
+    this.multiplicador = multiplicador;
+}
+
+
 @Override
 public String toString() {
     return super.toString()+"Curacion: " + vida_curada +  "multiplicador: "+ multiplicador ;

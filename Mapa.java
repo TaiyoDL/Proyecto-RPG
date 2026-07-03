@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Mapa {
@@ -65,7 +66,7 @@ this.pixel[i][j]=aux;
     }
     
 
-public boolean moverJugadors(char direccion){
+public boolean moverJugadors(char direccion) throws SQLException{
 
 int aux=1;
 switch (direccion) {
@@ -105,14 +106,17 @@ switch (direccion) {
         break;
 
         case 'x','X': 
-Menu.abrirMenu();
+if(!Menu.abrirMenu()){
+
+    return false;
+}
         break;
 
     default:
         
         break;
 }
-return false;
+return true;
 }
 
 
